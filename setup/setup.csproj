@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <!-- Import common setup values -->
   <Import Project="setup.Common.targets" />
   
@@ -6,6 +6,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWindowsForms>True</UseWindowsForms>
     <UseWPF>True</UseWPF>
+    <TieredCompilation>true</TieredCompilation> <!-- MonoMod.RuntimeDetour now supports tiered jit -->
     <OutputType>WinExe</OutputType>
     <TieredCompilation>false</TieredCompilation> <!-- be nice if we didn't need this, but MonoMod.RuntimeDetour isn't compatible with tiered jit currently -->
   </PropertyGroup>
