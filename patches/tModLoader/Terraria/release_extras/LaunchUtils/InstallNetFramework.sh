@@ -49,16 +49,18 @@ if [[ ! -f "$install_dir/dotnet.exe" && "$_uname" == *"_NT"* && "$(uname -m)" ==
 		unzip -qq "$dotnet_portable_archive" -d "$install_dir"
 		# Do not auto-delete if already present to avoid steam file checks to fail and redownload it
 	else
-		echo "None Found. Attempting downloading win x64 portable dotnet runtime directly..."
-		echo "This can take up to 5 minutes"
-		file_download "$install_dir.zip" "https://dotnetcli.azureedge.net/dotnet/Runtime/$dotnet_version/dotnet-runtime-$dotnet_version-win-x64.zip"
-
-		echo "Extracting..."
-		unzip -qq "$install_dir" -d "$install_dir"
-		# Will get cleaned up in the Cleaning step on next run. We don't want to use more disk space than we need
+		echo "Local archive not found. Attempting to download win x64 portable dotnet runtime directly..."
+		echo "Download size is about 32Mb"
+		if file_download "$install_dir.zip" "https://dotnetcli.azureedge.net/dotnet/Runtime/$dotnet_version/dotnet-runtime-$dotnet_version-win-x64.zip" ; then
+			echo "Extracting..."
+			unzip -qq "$install_dir" -d "$install_dir"
+			# Will get cleaned up in the Cleaning step on next run. We don't want to use more disk space than we need
+		else
+			echo "Direct download failed. Retrying with official dotnet-install script"
+		fi
 	fi
 fi
-
+read -p "Press enter to continue"
 #If the installed dotnet for this specific dotnet version still doesnt exist, grab the official installer script and run it.
 if [[ ! -f "$install_dir/dotnet" && ! -f "$install_dir/dotnet.exe" ]]; then
 	echo "Update Required. Will now attempt downloading using official scripts."

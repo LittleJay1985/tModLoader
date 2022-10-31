@@ -15,9 +15,17 @@ machine_has() {
 
 file_download() {
 	if machine_has "curl"; then
-		curl -sLo "$1" "$2"
+		echo
+		responseCode=$(curl -w '%{response_code}' -Lo "$1" "$2")
+		echo "HTTP Response: $responseCode"
+		if [ "$responseCode" != "200" ] ; then
+			if [[ -d "$dotnet_dir" ]] ; then
+				rm -rf "$dotnet_dir"
+			fi
+			return 1
+		fi
 	elif machine_has "wget"; then
-		wget -q -O "$1" "$2"
+		wget -O "$1" "$2"
 	else
 		echo "Missing dependency: neither curl nor wget was found."
 		return 1 # @TODO: Should hard fail?
