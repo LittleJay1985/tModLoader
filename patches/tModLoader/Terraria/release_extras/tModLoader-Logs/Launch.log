@@ -1,0 +1,10 @@
+Windows Version 10.0
+Quick Edit Disabled
+Verifying .NET....
+Logging to C:/Users/littl/source/repos/LittleJay1985/tModLoader/patches/tModLoader/Terraria/release_extras/tModLoader-Logs/Launch.log
+Verifying installation directory...
+Fixing .NET SDL PATH issues
+Success!
+Parsing .NET version requirements from runtimeconfig.json
+[ERROR] tModLoader.runtimeconfig.json Not Found. tModLoader installation possibly corrupt.
+        Please try verifying game files or reinstalling tModLoader.
