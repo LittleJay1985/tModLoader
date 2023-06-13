@@ -9,7 +9,7 @@
 -	private const string DLL_NAME = "CUESDK_2015.dll";
 +	public const string DLL_NAME = "CUESDK_2015.dll";
 +	*/
-+	public const string DLL_NAME = "CUESDK.x64_2019.dll";
++	public const string DLL_NAME = "libCUESDK";
  
 -	[DllImport("CUESDK_2015.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
 +	[DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
